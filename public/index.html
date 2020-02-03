@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Display Webcam Stream</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/webcam.min.js"></script>
+    <style>
+        .center {
+            margin: 50px auto;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #my_camera {
+            width: 320px;
+            height: 240px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="center">QRcode recognizer</h1>
+    <div class='center' id="my_camera"></div>
+    </n>
+    <div class='center' id="output"></div>
+
+    <script src="/index.js"></script>
+
+</body>
+
+</html>

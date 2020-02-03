@@ -1,1 +1,1 @@
-Coda_SocketQR
+CODAextension

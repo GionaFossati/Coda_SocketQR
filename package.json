@@ -1,0 +1,29 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "CODAextension",
+  "main": "index.js",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "express": "^4.17.1",
+    "jsqr": "^1.2.0",
+    "png.js": "^0.2.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daru13/coda-extensions.git"
+  },
+  "author": "Giona Fossati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daru13/coda-extensions/issues"
+  },
+  "homepage": "https://github.com/Daru13/coda-extensions#readme"
+}
