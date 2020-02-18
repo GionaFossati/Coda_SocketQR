@@ -25,7 +25,7 @@ var app = express();
 var clients = [];
 
 // Static files
-app.use(express.static('coda-extensions/public'));
+app.use(express.static(__dirname + '/public'));
 app.listen(3030, function () {
     console.log('Example app listening on port 3030!')
 })
@@ -47,21 +47,17 @@ wss.on('connection', function connection(ws) {
         var codeChecked = jsQR(rawImageData.data, 320, 240)
 
         if (codeChecked) {
-            console.log(codeChecked.location.topLeftCorner)
             switch (codeChecked.data) {
                 case 'SPHERE':
-                    console.log('SPHERE recognized');
                     objects.sphere = true;
                     objects.cube = false;
                     objects.pyramid = false;
                     break;
                 case 'PYRAMID':
-                    console.log('PYRAMID recognized');
                     objects.sphere = false;
                     objects.cube = false;
                     objects.pyramid = true;
                 case 'CUBE':
-                    console.log('CUBE recognized');
                     objects.sphere = false;
                     objects.cube = true;
                     objects.pyramid = false;
@@ -77,18 +73,16 @@ wss.on('connection', function connection(ws) {
             objects.pyramid = false;
         }
 
-        let objectHasChanged = false;
+        let objectHasNotChanged = true;
         for (let key of Object.keys(objects)) {
-            if (objects[key] !== lastObjects[key]) {
-                objectHasChanged = true;
-                objects = lastObjects;   
-            }
+            objectHasNotChanged = objectHasNotChanged && objects[key] === lastObjects[key];
         }
 
-        if (objectHasChanged) {
+        if (!objectHasNotChanged) {
             clients.forEach(function (client) {
-                client.send(JSON.stringify(lastObjects));
+                client.send(JSON.stringify(objects));
             });
+            lastObjects = JSON.parse(JSON.stringify(objects));
         }
     });
 
